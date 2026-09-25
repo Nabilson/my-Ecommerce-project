@@ -1,0 +1,30 @@
+1.	npx create-react-app dashboard
+2. 	Install dependencies
+	npm i apexcharts react-apexcharts axios jwt-decode moment react-hot-toast react-icons @reduxjs/toolkit react-redux react-spinners 	react-window redux-thunk socket.io-client
+
+npm i @reduxjs/toolkit react-redux axios react-hot-toast stripe react-icons react-multi-carousel react-range react-rating react-router-dom react-spinners socket.io-client
+
+
+
+Lecture 194. I have an issue with get_user_info function in authReducer.js. It appears not to be fulfilled when seller is logged in. In the Redux, under state, it should show userInfo, but it is not working. <solved>
+
+Lecture 199. The <Pending/> and <Deactive/> pages were not working when I used them as sellerRoutes, When I moved them to publicRoutes it somewhat worked. Not sure why. Will have to move in the future.
+
+Lecture 255. I can't get the ratings to show 4.5 stars, i.e. half stars. Only full stars show up.
+
+Lecture 275/276. I cannot input data into the form, to update shipping address info.
+
+Lectures 337-341. Card product delete and quantity increment not quite working great
+
+Lecture 348. Not quite sure how price is being interpreted in the authOrder.js Model. When I try to assign this value dynamically in the orderController.js it doesn't work. 
+
+Lectures 372-374. Can't display number of items in the Wishlist in the Header upon login
+	          When remove item from wishlist, does not immediately disappear from wishlist page.
+
+Lecture 391 he changed the name of the shop (shopName) for the products manually. How can that be achieved automatically when the product is being created?
+
+Logout issue. I am able to delete the token but for some reason it automatically logs back in.
+
+lectures 441-444 get_admin_order method in controller in orderController.js not working. Order details not showing for admin
+
+lectures 445-448 get_seller_order method in controller in orderController.js not working. Order details not showing for seller
