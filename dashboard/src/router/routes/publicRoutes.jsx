@@ -30,16 +30,16 @@ const publicRoutes = [
          path : '/unauthorized',
          element : <Unauthorized/>
     },
-	{
-         path: '/seller/account-pending',
-         element : <Pending/>,
-         ability : 'seller' 
-     },
-     {
-         path: '/seller/account-deactive',
-         element : <Deactive/>,
-         ability : 'seller' 
-     }
+	// {
+    //      path: '/seller/account-pending',
+    //      element : <Pending/>,
+    //      ability : 'seller' 
+    //  },
+    //  {
+    //      path: '/seller/account-deactive',
+    //      element : <Deactive/>,
+    //      ability : 'seller' 
+    //  }
 ]
 
 export default publicRoutes

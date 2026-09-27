@@ -133,8 +133,13 @@ export const logout = createAsyncThunk(
                 }
                 return fulfillWithValue(data)
             } catch (error) {
-                console.log(error.response.data)
-                return rejectWithValue(error.response.data)
+                localStorage.removeItem('accessToken')
+                if(role === 'admin'){
+                navigate('/admin/login')
+                }else{
+                navigate('/login')
+                }
+                return rejectWithValue(error.response?.data || {error: 'Logout failed'})
             }
         }
     )
@@ -155,6 +160,7 @@ export const authReducer = createSlice({
 
         messageClear : (state,_) => {
             state.errorMessage = ""
+            state.successMessage = ""
         }       
     },
     extraReducers: (builder) => {
@@ -221,7 +227,20 @@ export const authReducer = createSlice({
             state.userInfo = payload.userInfo
             state.successMessage = payload.message
         })
-
+        .addCase(logout.pending, (state) => {
+            state.loader = true;
+        })
+        .addCase(logout.rejected, (state, { payload }) => {
+            state.loader = false;
+            state.errorMessage = payload.error
+        })
+        .addCase(logout.fulfilled, (state) => {
+            state.loader = false;
+            state.successMessage = ''
+            state.userInfo = ''
+            state.role = ''
+            state.token = ''
+        })
     }
 
 })

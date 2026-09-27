@@ -46,7 +46,8 @@ const ProtectRoute = ({route, children}) => {
 
 
     }else{
-        return <Navigate to='/login' replace/>
+        const loginPath = window.location.pathname.startsWith('/admin') ? '/admin/login' : '/login'
+        return <Navigate to={loginPath} replace/>
     }
 };
 
