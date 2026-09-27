@@ -13,8 +13,8 @@ export const admin_login = createAsyncThunk(
             // console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
-            // console.log(error.response.data)
-            return rejectWithValue(error.response.data)
+            // console.log(error.response?.data)
+            return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
         }
     }
 )
@@ -29,8 +29,8 @@ export const seller_register = createAsyncThunk(
             //console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
-            // console.log(error.response.data)
-            return rejectWithValue(error.response.data)
+            // console.log(error.response?.data)
+            return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
         }
     }
 )
@@ -46,8 +46,8 @@ export const seller_login = createAsyncThunk(
             localStorage.setItem('accessToken', data.token)
             return fulfillWithValue(data)
         } catch (error) {
-            // console.log(error.response.data)
-            return rejectWithValue(error.response.data)
+            // console.log(error.response?.data)
+            return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
         }
     }
 )
@@ -62,8 +62,8 @@ export const get_user_info = createAsyncThunk(
             // console.log(data)            
             return fulfillWithValue(data)
         } catch (error) {
-            // console.log(error.response.data)
-            return rejectWithValue(error.response.data)
+            // console.log(error.response?.data)
+            return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
         }
     }
 )
@@ -77,8 +77,8 @@ export const profile_image_upload = createAsyncThunk(
             // console.log(data)            
             return fulfillWithValue(data)
         } catch (error) {
-            // console.log(error.response.data)
-            return rejectWithValue(error.response.data)
+            // console.log(error.response?.data)
+            return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
         }
     }
 )
@@ -92,8 +92,8 @@ export const profile_info_add = createAsyncThunk(
             //console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
-            // console.log(error.response.data)
-            return rejectWithValue(error.response.data)
+            // console.log(error.response?.data)
+            return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
         }
     }
 )
@@ -101,16 +101,19 @@ export const profile_info_add = createAsyncThunk(
 
 const returnRole = (token)=> {
         if(token){
-            const decodeToken = jwtDecode(token)
-            console.log(decodeToken)
-            const expireTime = new Date(decodeToken.exp * 1000)
-            if(new Date() > expireTime){
+            try {
+                const decodeToken = jwtDecode(token)
+                const expireTime = new Date(decodeToken.exp * 1000)
+                if(new Date() > expireTime){
+                    localStorage.removeItem('accessToken')
+                    return ''
+                } else {
+                    return decodeToken.role
+                }
+            } catch (error) {
                 localStorage.removeItem('accessToken')
                 return ''
-            } else {
-                return decodeToken.role
             }
-            console.log(token)
         }else {
             return ''
         }

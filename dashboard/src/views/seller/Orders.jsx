@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Pagination from '../Pagination';
 import { FaEdit, FaEye, FaTrash, FaImage } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { get_seller_orders } from '../../store/Reducers/OrderReducer';
+import { get_seller_orders } from '../../store/Reducers/orderReducer';
 
 const Orders = () => {
 

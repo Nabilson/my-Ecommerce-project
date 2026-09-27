@@ -12,8 +12,8 @@ export const get_admin_orders  = createAsyncThunk(
              console.log(data)
              return fulfillWithValue(data)
          } catch (error) {
-             // console.log(error.response.data)
-             return rejectWithValue(error.response.data)
+             // console.log(error.response?.data)
+             return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
          }
      }
  )
@@ -30,8 +30,8 @@ export const get_admin_order  = createAsyncThunk(
              //console.log(data)
              return fulfillWithValue(data)
          } catch (error) {
-             // console.log(error.response.data)
-             return rejectWithValue(error.response.data)
+             // console.log(error.response?.data)
+             return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
          }
      }
  )
@@ -48,8 +48,8 @@ export const admin_order_status_update  = createAsyncThunk(
              //console.log(data)
              return fulfillWithValue(data)
          } catch (error) {
-             // console.log(error.response.data)
-             return rejectWithValue(error.response.data)
+             // console.log(error.response?.data)
+             return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
          }
      }
  )
@@ -67,8 +67,8 @@ export const get_seller_orders  = createAsyncThunk(
              console.log(data)
              return fulfillWithValue(data)
          } catch (error) {
-             // console.log(error.response.data)
-             return rejectWithValue(error.response.data)
+             // console.log(error.response?.data)
+             return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
          }
      }
  )
@@ -85,8 +85,8 @@ export const get_seller_order  = createAsyncThunk(
              //console.log(data)
              return fulfillWithValue(data)
          } catch (error) {
-             // console.log(error.response.data)
-             return rejectWithValue(error.response.data)
+             // console.log(error.response?.data)
+             return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
          }
      }
  )
@@ -100,7 +100,7 @@ export const seller_order_status_update = createAsyncThunk(
             const {data} = await api.put(`/seller/order-status/update/${orderId}`,info,{withCredentials: true})  
             return fulfillWithValue(data)
         } catch (error) { 
-            return rejectWithValue(error.response.data)
+            return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
         }
     }
 ) 

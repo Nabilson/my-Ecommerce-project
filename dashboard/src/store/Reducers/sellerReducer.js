@@ -12,8 +12,8 @@ export const get_seller_request  = createAsyncThunk(
              console.log(data)
              return fulfillWithValue(data)
          } catch (error) {
-             // console.log(error.response.data)
-             return rejectWithValue(error.response.data)
+             // console.log(error.response?.data)
+             return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
          }
      }
  )
@@ -28,8 +28,8 @@ export const get_seller  = createAsyncThunk(
              console.log(data)
              return fulfillWithValue(data)
          } catch (error) {
-             // console.log(error.response.data)
-             return rejectWithValue(error.response.data)
+             // console.log(error.response?.data)
+             return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
          }
      }
  )
@@ -44,8 +44,8 @@ export const seller_status_update = createAsyncThunk(
              console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
-            // console.log(error.response.data)
-            return rejectWithValue(error.response.data)
+            // console.log(error.response?.data)
+            return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
         }
     }
 )
@@ -62,8 +62,8 @@ export const get_active_sellers = createAsyncThunk(
            
             return fulfillWithValue(data)
         } catch (error) {
-            // console.log(error.response.data)
-            return rejectWithValue(error.response.data)
+            // console.log(error.response?.data)
+            return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
         }
     }
 )
@@ -80,8 +80,8 @@ export const get_deactive_sellers = createAsyncThunk(
            
             return fulfillWithValue(data)
         } catch (error) {
-            // console.log(error.response.data)
-            return rejectWithValue(error.response.data)
+            // console.log(error.response?.data)
+            return rejectWithValue(error.response?.data ?? { error: error.message, message: error.message })
         }
     }
 )

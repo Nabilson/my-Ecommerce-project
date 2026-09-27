@@ -96,7 +96,7 @@ const dispatch = useDispatch()
                                 <div className='py-3 w-[13%] font-medium'>$654</div>
                                 <div className='py-3 w-[18%] font-medium'>Pending</div>
                                 <div className='py-3 w-[18%] font-medium'>Pending</div>
-                                <div className='py-3 w-[18%] font-medium'><Link to='http://localhost:5173/admin/dashboard/order/details/4'>View</Link></div>
+                                <div className='py-3 w-[18%] font-medium'><Link to='/admin/dashboard/order/details/4'>View</Link></div>
                                 <div onClick={(e) => setShow(!show)} className='py-3 w-[8%] font-bold'><LuArrowDownToLine /></div>
                             </div>
 

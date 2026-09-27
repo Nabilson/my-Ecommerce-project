@@ -1,6 +1,6 @@
 import { privateRoutes } from './privateRoutes';
 import MainLayout from './../../layout/MainLayout';
-import ProtectRoute from './ProtectRoute';
+import ProtectRoute from './protectRoute';
 
 export const getRoutes = () => {
 

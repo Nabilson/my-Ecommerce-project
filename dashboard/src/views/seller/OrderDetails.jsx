@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { get_seller_order, messageClear, seller_order_status_update } from '../../store/Reducers/OrderReducer';
+import { get_seller_order, messageClear, seller_order_status_update } from '../../store/Reducers/orderReducer';
 import toast from 'react-hot-toast';
 
 const OrderDetails = ()=> {

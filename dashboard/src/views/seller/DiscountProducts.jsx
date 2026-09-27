@@ -36,7 +36,7 @@ const DiscountProducts = () => {
                                         {
                                             [1,2,3,4,5].map((d, i)=> <tr key={i} >
                                             <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d}</td>
-                                            <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'><img className='w-[45px] h-[45px]' src={`http://localhost:5173/images/category/${d}.jpg`} alt='' /></td>                   
+                                            <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'><img className='w-[45px] h-[45px]' src={`/images/category/${d}.jpg`} alt='' /></td>                   
                                             <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>Men Full Sleeve</td>     
                                             <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>Tshirt</td> 
                                             <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>Veirdo</td> 

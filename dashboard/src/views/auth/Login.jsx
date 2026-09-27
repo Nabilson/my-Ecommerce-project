@@ -79,7 +79,7 @@ function Login() {
                 </button>
                   
                 <div className='flex items-center mb-3 gap-3 justify-center'>
-                    <p>Dont have an account ? <Link className='font-bold' to="/register">Sing Up</Link> </p>
+                    <p>Dont have an account ? <Link className='font-bold' to="/register">Sign Up</Link> </p>
                 </div>
 
                  <div className='w-full flex justify-center items-center mb-3'>
