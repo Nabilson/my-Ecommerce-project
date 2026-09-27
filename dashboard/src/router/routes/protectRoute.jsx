@@ -38,8 +38,10 @@ const ProtectRoute = ({route, children}) => {
         }
     }
         }else{
-            if(role.ability=='seller'){
+            if(route.ability === role){
                 return <Suspense fallback={null} >{children}</Suspense>
+            }else{
+                return <Navigate to='/unauthorized' replace />
             }
         }
 
@@ -47,7 +49,7 @@ const ProtectRoute = ({route, children}) => {
 
     }else{
         const loginPath = window.location.pathname.startsWith('/admin') ? '/admin/login' : '/login'
-        return <Navigate to={loginPath} replace/>
+    return <Navigate to={loginPath} replace/>
     }
 };
 
