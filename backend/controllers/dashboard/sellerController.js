@@ -12,7 +12,15 @@ class sellerController{
 
         try {
             if (searchValue) {
-                
+                const sellers = await sellerModel.find({
+                    $text: {$search: searchValue},
+                    status: 'pending'
+                }).skip(skipPage).limit(parPage).sort({ createdAt: -1})
+                const totalSeller = await sellerModel.find({
+                    $text: {$search: searchValue},
+                    status: 'pending'
+                }).countDocuments()
+                responseReture(res, 200,{ sellers,totalSeller })
             } else {
                 const sellers = await sellerModel.find({ status:  'pending'}).skip(skipPage).limit(parPage).sort({ createdAt: -1})
                 const totalSeller = await sellerModel.find({ status: 'pending' }).countDocuments()
@@ -31,7 +39,8 @@ class sellerController{
             const seller = await sellerModel.findById(sellerId)
             responseReture(res, 200,{ seller })
             }catch(error){
-                return rejectWithValue(error.response.data)
+                //return rejectWithValue(error.response.data)
+                responseReture(res, 500,{ error: error.message })
             }
         }
          
@@ -53,7 +62,7 @@ class sellerController{
                 }).skip(skipPage).limit(parPage).sort({createdAt : -1})
 
                 const totalSeller = await sellerModel.find({
-                    $text: {search: searchValue},
+                    $text: {$search: searchValue},
                     status: 'deactive'
                 }).countDocuments()
                 responseReture(res, 200, {totalSeller, sellers})
@@ -104,7 +113,7 @@ class sellerController{
                 }).skip(skipPage).limit(parPage).sort({createdAt : -1})
 
                 const totalSeller = await sellerModel.find({
-                    $text: {search: searchValue},
+                    $text: {$search: searchValue},
                     status: 'active'
                 }).countDocuments()
                 responseReture(res, 200, {totalSeller, sellers})
@@ -119,7 +128,8 @@ class sellerController{
                 responseReture(res, 200, {totalSeller, sellers})
             }
         } catch (error) {
-            console.log('active seller get')
+            //console.log('active seller get')
+            responseReture(res, 500,{ error: error.message })
         }
     }
 }
