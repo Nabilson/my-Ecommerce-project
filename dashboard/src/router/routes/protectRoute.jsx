@@ -33,10 +33,16 @@ const ProtectRoute = ({route, children}) => {
                             return <Suspense fallback={null} >{children}</Suspense>
                        }
                     }
+                }else{
+                    return <Navigate to='/unauthorized' replace />
+                }
             }else{
-             return <Navigate to='/unauthorized' replace />
-        }
-    }
+                // userInfo is fetched async after login (get_user_info in App.jsx).
+                // Without this branch the code falls through to the ability check
+                // below and wrongly bounces to /unauthorized on a loading race.
+                // Render nothing until userInfo arrives, then gate normally.
+                return null
+            }
         }else{
             if(route.ability === role){
                 return <Suspense fallback={null} >{children}</Suspense>
@@ -44,12 +50,9 @@ const ProtectRoute = ({route, children}) => {
                 return <Navigate to='/unauthorized' replace />
             }
         }
-
-
-
     }else{
         const loginPath = window.location.pathname.startsWith('/admin') ? '/admin/login' : '/login'
-    return <Navigate to={loginPath} replace/>
+        return <Navigate to={loginPath} replace/>
     }
 };
 

@@ -99,6 +99,7 @@ export const productReducer = createSlice({
 
         messageClear : (state,_) => {
             state.errorMessage = ""
+            state.successMessage = ""
         }
 
     },

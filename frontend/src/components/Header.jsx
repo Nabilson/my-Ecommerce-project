@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { MdEmail } from "react-icons/md";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaFacebookF, FaList, FaLock, FaUser } from "react-icons/fa";
@@ -12,6 +12,8 @@ import { FaCartShopping } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
+
+import { get_cart_products, get_wishlist_products } from '../store/reducers/cartReducer';
 
 const Header = ()=> {
 
@@ -27,6 +29,8 @@ const Header = ()=> {
  const [searchValue, setSearchValue] = useState('')
  const [category, setCategory] = useState('')
 
+ const dispatch = useDispatch()
+
  const search = () => {
  	navigate(`/products/search?category=${category}&&value=${searchValue}`)
  }
@@ -38,6 +42,13 @@ const redirect_cart_page = () => {
 		navigate('/login')
 	}
 }
+
+useEffect(() => {
+	if (userInfo) {
+		dispatch(get_cart_products(userInfo.id))
+		dispatch(get_wishlist_products(userInfo.id))
+	}
+}, [userInfo])
 
 	return (
 		<div className='w-full bg-white'>
@@ -276,7 +287,7 @@ const redirect_cart_page = () => {
 								return (
 									<li key={i} className='flex justify-start items-center gap-2 px-[24px] py-[6px]'>
 									<img src={c.image} className='w-[30px] h-[30px] rounded-full overflow-hidden' alt="" />
-									<Link to={`/products?category=${c.name}`} className='text-sm block'>{c.name}</Link>									
+									<Link to={`/products?category=${encodeURIComponent(c.name)}`} className='text-sm block'>{c.name}</Link>									
 									</li>
 									)
 							})

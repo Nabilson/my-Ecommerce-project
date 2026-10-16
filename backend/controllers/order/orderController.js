@@ -94,6 +94,7 @@ class orderController{
             
         } catch (error) {
             console.log(error.message) 
+            responseReture(res, 500, { error: 'Failed to place order. Please try again.' })
         }
  
     }
@@ -220,18 +221,22 @@ get_admin_orders = async(req, res) => {
 
         const order = await customerOrder.aggregate([
             {
-                $match: {_id: new ObjectID(orderId)}
+                $match: {_id: new ObjectId(orderId)}
             },
             {
                 $lookup: {
-                    
+                    from: 'authororders',
+                    localField: "_id",
+                    foreignField: 'orderId',
+                    as: 'suborder'
                 }
             }   
         ])
         responseReture(res,200, { order: order[0] })
 
     } catch(error){
-        console.log('')
+        console.log('error.message')
+        responseReture(res, 500, { error: 'Failed to fetch order details.' })
     }
  }
 
@@ -293,6 +298,7 @@ get_admin_orders = async(req, res) => {
         responseReture(res, 200, { order })
     } catch (error) {
         console.log('get seller details error' + error.message)
+        responseReture(res, 500, { error: 'Failed to fetch order details.' })
     }
   }
   // End Method  

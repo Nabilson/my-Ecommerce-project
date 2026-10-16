@@ -113,11 +113,11 @@ const OrderDetails = ()=> {
     					o.products?.map((p, i) => <div className='flex gap-3 text-md mt-2'>
             				<img className='w-[50px] h-[50px]' src={p.images[0]} alt="" />
             				<div>
-            					<h2>Product Name here</h2>
+            					<h2>{p.name}</h2>
             					<p>
 	            					<span>Brand:</span>
-	            					<span>Easy</span>
-	            					<span className='text-lg'>Quantity: 3</span>
+	            					<span>{p.brand}</span>
+	            					<span className='text-lg'>Quantity: {p.quantity}</span>
 	            				</p>
             				</div>
             		</div>)

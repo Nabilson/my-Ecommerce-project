@@ -177,7 +177,7 @@ export const cartReducer = createSlice({
         })
         .addCase(remove_wishlist.fulfilled, (state, { payload }) => { 
             state.successMessage = payload.message;
-            state.wishlist = state.wishlist.filter(p => p._id !== payload.wishlistId);
+            state.wishlist = state.wishlist.filter(p => p._id !== payload.wishlist._id);
             state.wishlist_count = state.wishlist_count - 1;
         })
     }

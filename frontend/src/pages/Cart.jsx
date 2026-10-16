@@ -180,7 +180,7 @@ const Cart = () => {
                 <h2 className='text-xl font-bold'>Order Summary</h2>
                 <div className='flex justify-between items-center'>
                     <span>{buy_product_item} Items </span>
-                    <span>${price} </span>
+                    <span>${price.toFixed(2)} </span>
                 </div>
                 <div className='flex justify-between items-center'>
                     <span>Shipping Fee </span>
@@ -193,7 +193,7 @@ const Cart = () => {
 
                 <div className='flex justify-between items-center'>
                     <span>Total</span>
-                    <span className='text-lg text-[#059473]'>${price + shipping_fee} </span>
+                    <span className='text-lg text-[#059473]'>${(price + shipping_fee).toFixed(2)} </span>
                 </div>
                 <button onClick={redirect} className='px-5 py-[6px] rounded-sm hover:shadow-red-500/50 hover:shadow-lg bg-red-500 text-sm text-white uppercase '>
                     Process to Checkout ({buy_product_item})

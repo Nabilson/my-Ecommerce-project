@@ -12,7 +12,7 @@ export const customer_register = createAsyncThunk(
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
-            console.log(error.respone)
+            //console.log(error.respone)
             
         }
     }
@@ -48,7 +48,7 @@ export const authReducer = createSlice({
     name: 'auth',
     initialState:{
         loader : false,
-        userInfo : decodeToken(localStorage.getItem('decodeToken')),
+        userInfo : decodeToken(localStorage.getItem('customerToken')),
         errorMessage : '',
         successMessage: '', 
     },

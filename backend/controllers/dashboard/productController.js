@@ -10,7 +10,7 @@ class productController{
 
 		form.parse(req, async(err, field, files)=>{
 			let {name, category, description, stock, price, discount, shopName, brand} = field;
-			const {images} = files;
+			const images = [].concat(files.images || []);
 			name = name.trim()
 			const slug = name.split(' ').join('-')
 

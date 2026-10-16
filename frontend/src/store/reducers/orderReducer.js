@@ -3,7 +3,7 @@ import api from "../../api/api";
 
 export const place_order = createAsyncThunk(
     'order/place_order',
-    async({ price,products,shipping_fee,items,shippingInfo,userId,navigate}) => {
+    async({ price,products,shipping_fee,items,shippingInfo,userId,navigate}, { rejectWithValue }) => {
         try {
             const { data } = await api.post('/home/order/place-order',{
                 price,products,shipping_fee,items,shippingInfo,userId,navigate
@@ -18,6 +18,7 @@ export const place_order = createAsyncThunk(
             console.log(data)
         } catch (error) {
             console.log(error.response)
+            return rejectWithValue(error.response?.data || { error: 'Failed to place order. Please try again.' })
         }
         
     }
@@ -79,6 +80,9 @@ export const orderReducer = createSlice({
         .addCase(get_order_details.fulfilled, (state, { payload }) => { 
             state.myOrder = payload.order; 
         })
+        .addCase(place_order.rejected, (state, { payload }) => { 
+        state.errorMessage = payload?.error || 'Failed to place order. Please try again.';
+})
         
     }
 })

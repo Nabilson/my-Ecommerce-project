@@ -95,7 +95,7 @@ add_to_cart =  async(req, res) => {
       					pri = tempProduct.price
       				}
       		pri = pri - Math.floor((pri * co)/100)	
-      		price = price + pri * stockProduct.quantity
+      		price = price + pri * stockProduct[j].quantity
       		p[i] = {
       			sellerId: unique[i], 
       			shopName: tempProduct.shopName,
@@ -103,7 +103,7 @@ add_to_cart =  async(req, res) => {
       			products: p[i] ? [
       				...p[i].products, 
       				{
-      					_id: stockProduct._id,
+      					_id: stockProduct[j]._id,
       					quantity: stockProduct[j].quantity,
       					productInfo: tempProduct
       				}

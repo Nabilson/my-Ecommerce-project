@@ -22,7 +22,7 @@ export const get_admin_orders  = createAsyncThunk(
 
 export const get_admin_order  = createAsyncThunk(
      'orders/get_admin_order',
-     async({ orderId },{rejectWithValue, fulfillWithValue}) => {
+     async( orderId ,{rejectWithValue, fulfillWithValue}) => {
          
          try {
               
@@ -77,11 +77,11 @@ export const get_seller_orders  = createAsyncThunk(
 
 export const get_seller_order  = createAsyncThunk(
      'orders/get_seller_order',
-     async({ orderId },{rejectWithValue, fulfillWithValue}) => {
+     async( orderId ,{rejectWithValue, fulfillWithValue}) => {
          
          try {
               
-             const {data} = await api.get(`/admin/order/${orderId}`,{withCredentials: true}) 
+             const {data} = await api.get(`/seller/order/${orderId}`,{withCredentials: true}) 
              //console.log(data)
              return fulfillWithValue(data)
          } catch (error) {

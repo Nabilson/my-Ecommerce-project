@@ -88,6 +88,23 @@ export const get_deactive_sellers = createAsyncThunk(
 
 // End method
 
+export const create_stripe_connect_account = createAsyncThunk(
+    'seller/create_stripe_connect_account',
+    async() => {
+        
+        try {
+             const {data: {url}} = await api.get(`/payment/create-stripe-connect-account`, {withCredentials: true})
+             window.location.href = url
+             console.log(data)
+        } catch (error) {
+             console.log(error.response?.data)
+            
+        }
+    }
+)
+
+// End method
+
 export const sellerReducer = createSlice({
     name: 'seller',
     initialState:{
@@ -103,6 +120,7 @@ export const sellerReducer = createSlice({
 
         messageClear : (state,_) => {
             state.errorMessage = ""
+            state.successMessage = ""
         }
 
     },

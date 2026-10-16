@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { IoIosArrowForward } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
-import { place_order } from '../store/reducers/orderReducer';
+import { place_order, messageClear } from '../store/reducers/orderReducer';
+import toast from 'react-hot-toast';
 
 const Shipping = () => {
 
@@ -12,6 +13,8 @@ const Shipping = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
     const {userInfo} = useSelector(state => state.auth) 
+
+    const {errorMessage} = useSelector(state => state.order)
 
 	const [res, setRes] = useState(false)
 	const [state, setState] = useState({
@@ -27,7 +30,7 @@ const Shipping = () => {
 	const inputHandle = (e)=> {
 		setState({
 			...state,
-			[e.target.name]: e.target.name
+			[e.target.name]: e.target.value
 		})
 	}
 
@@ -52,6 +55,13 @@ const Shipping = () => {
         }))
 
 	}
+
+	useEffect(() => {
+		if (errorMessage) {
+			toast.error(errorMessage)
+			dispatch(messageClear())
+		}
+	}, [errorMessage, dispatch])
 
     return (
         <div >
@@ -212,13 +222,13 @@ const Shipping = () => {
 							                </div>
 							                <div className='flex justify-between items-center'>
 							                    <span>Total Payment </span>
-							                    <span>${price + shipping_fee} </span>
+							                    <span>${(price + shipping_fee).toFixed(2)} </span>
 							                </div>
 							             
 
 							                <div className='flex justify-between items-center'>
 							                    <span>Total</span>
-							                    <span className='text-lg text-[#059473]'>${price + shipping_fee} </span>
+							                    <span className='text-lg text-[#059473]'>${(price + shipping_fee).toFixed(2)} </span>
 							                </div>
 							                <button onClick={placeOrder} disabled={res ? false : true} className={`px-5 py-[6px] rounded-sm hover:shadow-red-500/50 hover:shadow-lg ${res ? 'bg-red-500' : 'bg-red-300'}  text-sm text-white uppercase`}>
 							                    Place Order 

@@ -15,6 +15,8 @@ const AddProduct = () => {
     const {categorys} = useSelector(state=> state.category)
     const {loader, successMessage, errorMessage} = useSelector(state=> state.product)
 
+    const {userInfo} = useSelector(state=> state.auth)
+
     useEffect(()=> {
         dispatch(get_category({
             searchValue: '',
@@ -130,7 +132,7 @@ const add = (e) => {
     formData.append('brand',state.brand )
     formData.append('stock',state.stock )
     formData.append('discount',state.discount)
-    formData.append('shopName','EasyShop')
+    formData.append('shopName', userInfo.shopInfo?.shopName || userInfo.name || '')
     formData.append('category',category)
 
     for(let i=0; i<images.length; i++){

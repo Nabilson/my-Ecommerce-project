@@ -50,6 +50,7 @@ export const categoryReducer = createSlice({
 
         messageClear : (state,_) => {
             state.errorMessage = ""
+            state.successMessage = ""
         }
 
     },
