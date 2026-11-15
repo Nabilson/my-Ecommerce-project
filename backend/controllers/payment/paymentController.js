@@ -1,3 +1,4 @@
+const sellerModel = require ('../../models/sellerModel')
 const stripeModel = require ('../../models/stripeModel')
 const {v4: uuidv4} = require('uuid')
 const { responseReture } = require('../../utilities/response')
@@ -53,8 +54,39 @@ create_stripe_connect_account = async(req, res) => {
 	}
 
  }
-}
+
+ // End Method
+
+ active_stripe_connect_account = async (req, res) => {
+ 	const {activeCode} = req.params 
+ 	const {id} = req
+
+ 	try{
+ 		const userStripeInfo = await stripeModel.findOne({ code: activeCode })
+
+ 		if (userStripeInfo){
+ 			await sellerModel.findByIdAndUpdate(id,{
+ 				payment: 'active'
+
+ 			})
+ 			responseReture(res, 200, {message: 'payment Active'})
+ 		}else {
+ 			responseReture(res, 404, {message: 'payment Active Fails'})
+ 		}
+
+
+
+ 	}catch(error){
+ 		responseReture(res, 500, {message: 'Internal Server Error'})
+ 	}
+
+ }
+
 // End Method
+
+
+}
+
 
 
 module.exports = new paymentController()

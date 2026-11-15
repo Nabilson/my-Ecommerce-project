@@ -6,6 +6,7 @@ const AdminLogin = lazy(()=> import ("../../views/auth/AdminLogin"));
 const Unauthorized = lazy(()=> import ("../../views/Unauthorized"));
 const Pending = lazy(()=> import ("../../views/Pending"));
 const Deactive = lazy(()=> import ("../../views/Deactive"));
+const Success = lazy(()=> import('../../views/Success'))  
 
 //import Register from "../../views/auth/Register";
 
@@ -30,11 +31,10 @@ const publicRoutes = [
          path : '/unauthorized',
          element : <Unauthorized/>
     },
-	// {
-    //      path: '/seller/account-pending',
-    //      element : <Pending/>,
-    //      ability : 'seller' 
-    //  },
+	{
+         path: '/success?',
+         element : <Success/>,
+     }
     //  {
     //      path: '/seller/account-deactive',
     //      element : <Deactive/>,
